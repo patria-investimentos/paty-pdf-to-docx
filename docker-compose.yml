@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-pdf-to-docx}
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
     environment:

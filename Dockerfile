@@ -20,7 +20,6 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PATH "/usr/local/bin:/usr/bin:/bin:${HOME}/.local/bin:${PATH}"
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app/src
-ENV PORT=8000
 
 WORKDIR /app
 
@@ -30,12 +29,8 @@ RUN useradd -m -u 1000 appuser && \
 COPY --from=builder /usr/local /usr/local
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-RUN find /bin /sbin /usr/bin /usr/sbin /usr/local/bin -type f -executable \
-  ! -name "python*" ! -name "uvicorn" ! -name "sh" -exec chmod -x {} +
-
 COPY ./src ./src
 
 USER appuser
 
-EXPOSE ${PORT}
-CMD sh -c "uvicorn src.main:app --host 0.0.0.0 --port ${PORT}"
+CMD sh -c "uvicorn src.main:app --host 0.0.0.0 --port $PORT"
