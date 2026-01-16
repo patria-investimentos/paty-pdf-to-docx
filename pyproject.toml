@@ -1,0 +1,19 @@
+[project]
+name = "pdf-to-docx"
+version = "1.0.0"
+description = "FastAPI app to convert PDF to DOCX"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "pydantic",
+    "pydantic-settings",
+    "uvicorn[standard]",
+    "python-multipart>=0.0.20",
+    "pdf2docx>=0.5.8",
+    "python-docx>=1.1.0",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
